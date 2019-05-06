@@ -1,7 +1,5 @@
 package data
 
-import java.io.Serializable
-
-class Country(): Serializable {
+class Country() {
     var name: String? = null
 }

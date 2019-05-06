@@ -1,8 +1,7 @@
 package data
 
-import java.io.Serializable
 
-class CardNumber() : Serializable {
+class CardNumber() {
     var length: Int = 0
     val luhn: Boolean = false
 }

@@ -6,6 +6,9 @@ import javax.script.ScriptEngine
 import javax.script.ScriptEngineManager
 import javax.script.ScriptException
 
+/**
+ * Native mapper
+ * */
 class JsonMapper {
     private var engine: ScriptEngine? = null
 
@@ -29,6 +32,12 @@ class JsonMapper {
         this.engine = sem.getEngineByName("javascript")
     }
 
+    /**
+     * Using js script machine to map json string to dictionary
+     * @param jsonString - input string
+     * @param clazz - type of object to return
+     *@return specified type (T)
+     * */
     @Throws(IOException::class, ScriptException::class)
     fun <T : Any> parseJson(jsonString: String, clazz: Class<T>): T? {
         val script = "Java.asJSONCompatible($jsonString)"
@@ -49,6 +58,12 @@ class JsonMapper {
         return null
     }
 
+    /**
+     * Set hashmap values to object fields via reflection
+     * @param currentObject
+     * @param fieldName - field of object
+     * @param fieldValue - value
+     * */
   private  fun setFieldValue(currentObject: Any, fieldName: String, fieldValue: Any?): Boolean {
         var clazz: Class<*>? = currentObject.javaClass
         while (clazz != null) {

@@ -1,8 +1,7 @@
 package data
 
-import java.io.Serializable
 
- class Card() : Serializable {
+ class Card() {
      var number: CardNumber? = null
      var scheme: String? = null
      var type: String? = null

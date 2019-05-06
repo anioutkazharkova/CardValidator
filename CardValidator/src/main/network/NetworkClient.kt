@@ -11,10 +11,18 @@ import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 
-
+/**
+Native network client implementation
+*/
 class NetworkClient() : INetworkClient {
+
+    //Json native mapper
     private var mapper: JsonMapper? = JsonMapper.instance()
 
+    /**
+     * @param clazz - type of result
+     * @param path - url path of request
+     * */
     @Throws(IOException::class)
     override fun <T : Any> requestGet(
         clazz: Class<T>,
@@ -23,6 +31,11 @@ class NetworkClient() : INetworkClient {
         return requestGet(clazz, path, null)
     }
 
+    /**
+     * @param clazz - type of result
+     * @param path - url path of request
+     * @param params - parameters (body) of request
+     * */
     @Throws(IOException::class)
     override fun <T : Any> requestGet(
         clazz: Class<T>,
@@ -32,7 +45,13 @@ class NetworkClient() : INetworkClient {
         return request(clazz, path, RequestMethod.GET, params)
     }
 
-
+    /**
+     * Common method for network request
+     * @param clazz - type of result
+     * @param path - url path of request
+     * @param method - HTTP method of request
+     * @param params - parameters (body) of request
+     * */
     @Throws(IOException::class)
     private fun <T : Any> request(
         clazz: Class<T>,
@@ -76,6 +95,9 @@ class NetworkClient() : INetworkClient {
         return contentResponse
     }
 
+    /**
+     * Mapping content with native mapper
+     * */
     private fun <T : Any> mapContent(clazz: Class<T>, responseString: String): T? {
         val content = mapper?.parseJson(responseString, clazz)
         return content

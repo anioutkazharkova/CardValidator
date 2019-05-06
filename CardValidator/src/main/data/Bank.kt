@@ -1,8 +1,7 @@
 package data
 
-import java.io.Serializable
 
-class Bank():Serializable {
+class Bank() {
     var name: String? = null
     var phone: String? = null
     var city: String? = null
